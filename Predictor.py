@@ -3,13 +3,13 @@ from sklearn import tree  #permite usar arboles de desicion
 
 from sklearn.tree import export_graphviz #esta libreria nos ofrece la opcion de graficar el arbol
 import graphviz
-import interpretar as inter  
-import matplotlib.pyplot as plt 
+import interpretar as inter
+import matplotlib.pyplot as plt
 import numpy as np  #nos ofrece la opcion de crear vectores y matrices
 import sys
 
 
-red=MLPClassifier(max_iter=(10000), hidden_layer_sizes=(1000,1000))
+# red=MLPClassifier(max_iter=(10000), hidden_layer_sizes=(1000,1000))
 clasif = tree.DecisionTreeClassifier() #crea un variable con todos los atributos y metodos del arbol clasificador
 z=['U1C','U2C','U3C','U4C','U1T','U2T','U3T','U4T','U1I','U2I','U3I','U4I','U1M','U2M','U3M','U4M']
 
@@ -45,7 +45,7 @@ def interpretar(x):	#interpreta la prediccion obtenida, la resive como parametro
 			y.append('Reforzar')
 		i=i+3
 	i=0
-	while i < len(z): 
+	while i < len(z):
 		print (y[i],z[i])
 		i=i+1
 
@@ -58,7 +58,7 @@ def probar(entrada,salida): #dadas 2 matrices (20% de los datos) prueba que tan 
 		i=i+1
 	size=len(salida)*48
 	presicion=(cantDatosIguales+0.0)/(size+0.0)
-	return presicion		
+	return presicion
 
 def probarIgualdad(array1,array2): #este metodo sirve como apoyo al metodo probar compara 2 arrays
 	cantDatosIgu=0
@@ -70,7 +70,7 @@ def probarIgualdad(array1,array2): #este metodo sirve como apoyo al metodo proba
 			cantDatosIgu=cantDatosIgu+1
 		#else:
 			#print(array1[i],array2[i])
-		i=i+1	
+		i=i+1
 	return cantDatosIgu
 
 def imprimir():
@@ -78,8 +78,8 @@ def imprimir():
 	names=['genero','edad','grado','ciencia','tecnologia',
 		'ingenieria','metematica','estrato','madre','padre','hermanos']
 
-	export_graphviz(clasif,out_file='arbol.dot',feature_names=names, 
-		class_names=['l','m','n','o','p','q','r','s','t','u','v'],impurity=False,filled=True)	
+	export_graphviz(clasif,out_file='arbol.dot',feature_names=names,
+		class_names=['l','m','n','o','p','q','r','s','t','u','v'],impurity=False,filled=True)
 	with open('arbol.dot') as f:
 		dot_graph=f.read()
 	graphviz.Source(dot_graph)
